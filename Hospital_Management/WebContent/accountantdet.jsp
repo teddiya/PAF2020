@@ -11,6 +11,17 @@
 	}
 %>
 
+<%
+	//Update item---------------------------------
+	if (request.getParameter("Acode") != null) { //`PID`,`Pcode`,`PName`,`PNIC`,`PhoneNo`,`Email`,`Address`,`Password`
+		accountantRegister itemObj = new accountantRegister();
+		String stsMsg = itemObj.updateItem(request.getParameter("Acode"), request.getParameter("AName"),
+				request.getParameter("ANIC"), request.getParameter("PhoneNo"), request.getParameter("Email"),
+				request.getParameter("Address"), request.getParameter("Password"), request.getParameter("AID_form"));
+		session.setAttribute("statusMsg", stsMsg);
+	}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,10 +66,134 @@
 <br>
 <br>
 <body>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Update Accountant Details</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">          
+          
+          <form method="POST" action="aRedirectUpdate">
+          	<input type="hidden" id="AID_form" name="AID_form"/>
+						<div class="form-row m-b-55">
+							<div class="name">Accountant code</div>
+							<div class="value">
+								<div class="input-group">
+									<input class="form-control" type="text" name="Acode" id="Acode_form">
+
+								</div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="name">Name</div>
+							<div class="value">
+								<div class="input-group">
+									<input class="form-control" type="text" name="AName" id="AName_form">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="name">NIC Number</div>
+							<div class="value">
+								<div class="input-group">
+									<input class="form-control" type="text" name="ANIC" id="ANIC_form">
+								</div>
+							</div>
+						</div>
+						<div class="form-row m-b-55">
+							<div class="name">Phone Number</div>
+							<div class="value">
+								<div class="row row-refine">
+									<div class="col-9">
+										<div class="input-group-desc">
+											<input class="form-control" type="text" name="PhoneNo" id="PhoneNo_form">
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="name">Email</div>
+							<div class="value">
+								<div class="input-group">
+									<input class="form-control" type="email" name="Email" id="Email_form">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="name">Address</div>
+							<div class="value">
+								<div class="input-group">
+									<input class="form-control" type="text" name="Address" id="Address_form">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="name">Password</div>
+							<div class="value">
+								<div class="input-group">
+									<input class="form-control" type="password" name="Password" id="Password_form">
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<button class="btn btn-primary" type="submit"
+								value="Save">Update</button>
+
+
+						</div>
+					</form>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
 	<%
-		accountantRegister acobj = new accountantRegister();
-		out.print(acobj.readItems());
+	accountantRegister docobj = new accountantRegister();
+	out.print(docobj.readItems());
 	%>
+	<script>
+	$(document).ready(function() {
+
+		  $('a[data-toggle=modal], button[data-toggle=modal]').click(function () {
+	
+		    var data_id = '';
+		    
+		    if (typeof $(this).data('id') !== 'undefined') {
+
+		      data_id = $(this).data('id');
+		    }
+		    
+		    $('#AID_form').val(data_id);
+		    $('#Acode_form').val($(this).data('todo').Acode);
+		    $('#AName_form').val($(this).data('todo').AName);
+		    $('#ANIC_form').val($(this).data('todo').ANIC);
+		    $('#PhoneNo_form').val($(this).data('todo').PhoneNo);
+		    $('#Email_form').val($(this).data('todo').Email);
+		    $('#Address_form').val($(this).data('todo').Address);
+		    $('#Password_form').val($(this).data('todo').Password);
+		    
+		  })
+		});
+	</script>
+	
 </body>
 </html>

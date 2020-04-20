@@ -35,7 +35,7 @@
 				</div>
 
 				<form class="login100-form validate-form" method="post"
-					action="Logincheck.jsp">
+					action="Logincheck">
 					<span class="login100-form-title"> Administrator Login </span>
 
 					<div class="wrap-input100 validate-input"
@@ -57,8 +57,8 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<a href="adminHome.html" class="login100-form-btn" role="button" type="submit"
-							value="login">Login</a>
+						<button class="login100-form-btn" role="button" type="submit"
+							>Login</button>
 					</div>
 
 				</form>

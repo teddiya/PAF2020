@@ -71,11 +71,11 @@ public class DoctorRegister {
 				ResultSet rs = stmt.executeQuery(query);   
 				// iterate through the rows in the result set
 				while (rs.next()) {
-					String DocId = Integer.toString(rs.getInt("DocId"));
+					String DocID = Integer.toString(rs.getInt("DocID"));
 					String DocLNo = rs.getString("DocLNo");
 					String Name = rs.getString("Name");
 					String NIC = rs.getString("NIC");
-					String PhoneNo = Double.toString(rs.getDouble("PhoneNo"));
+					String PhoneNo = Integer.toString(rs.getInt("PhoneNo"));
 					String Email = rs.getString("Email");
 					String Address = rs.getString("Address");
 					String DocSpeacialist = rs.getString("DocSpeacialist");
@@ -92,10 +92,12 @@ public class DoctorRegister {
 					output += "<td>" + WorkingXp + "</td>";
 					output += "<td>" + Password + "</td>";
 					// buttons
-					output += "<td><a href=\"docupdate.jsp\" class=\"btn btn-secondary\" role=\"button\">Update</a></td>" 
+					output += "<td><button type=\"button\" class=\"btn update_btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\" data-id=\"" + DocID + "\" data-todo='{\"DocLNo\":\""+ DocLNo+ "\","
+							+ "\"Name\":\""+Name+ "\",\"NIC\":\""+ NIC+ "\",\"PhoneNo\":\""+ PhoneNo + "\",\"Email\":\""+ Email+ "\",\"Address\":\""+ Address+ "\","
+								+ "\"DocSpeacialist\":\""+ DocSpeacialist+ "\",\"WorkingXp\":\""+ WorkingXp+ "\",\"Password\":\""+ Password+ "\"}'>Update</button></td>"
 							+ "<td><form method=\"post\" action=\"docDetails.jsp\">"
 							+ "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\"class=\"btn btn-danger\">"
-							+ "<input name=\"DocId\" type=\"hidden\" value=\"" + DocId + "\">" + "</form></td></tr>";
+							+ "<input name=\"DocID\" type=\"hidden\" value=\"" + DocID + "\">" + "</form></td></tr>";
 				}
 				con.close();
 				// Complete the html table
@@ -143,6 +145,7 @@ public class DoctorRegister {
 
 		public String deleteItem(String DocID) {
 			String output = "";
+			System.out.println("delte test doc");
 			try {
 				Connection con = connect();
 				if (con == null) {

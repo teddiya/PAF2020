@@ -72,7 +72,7 @@ public class accountantRegister {
 							String Acode = rs.getString("Acode");
 							String AName = rs.getString("AName");
 							String ANIC = rs.getString("ANIC");
-							String PhoneNo = Double.toString(rs.getDouble("PhoneNo"));
+							String PhoneNo = Integer.toString(rs.getInt("PhoneNo"));
 							String Email = rs.getString("Email");
 							String Address = rs.getString("Address");
 							String Password = rs.getString("Password");
@@ -85,8 +85,9 @@ public class accountantRegister {
 							output += "<td>" + Address + "</td>";
 							output += "<td>" + Password + "</td>";
 							// buttons
-							output += "<td><a href=\"pharmacistupdate.jsp\" class=\"btn btn-secondary\" role=\"button\">Update</a></td>" 
-									+ "<td><form method=\"post\" action=\"pharmacistdet.jsp\">"
+							output += "<td><button type=\"button\" class=\"btn update_btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\" data-id=\"" + AID + "\" data-todo='{\"Acode\":\""+ Acode+ "\","
+									+ "\"AName\":\""+AName+ "\",\"ANIC\":\""+ ANIC+ "\",\"PhoneNo\":\""+ PhoneNo + "\",\"Email\":\""+ Email+ "\",\"Address\":\""+ Address+ "\",\"Password\":\""+ Password+ "\"}'>Update</button></td>"
+									+ "<td><form method=\"post\" action=\"accountantdet.jsp\">"
 									+ "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\"class=\"btn btn-danger\">"
 									+ "<input name=\"AID\" type=\"hidden\" value=\"" + AID + "\">" + "</form></td></tr>";
 						}
@@ -139,7 +140,7 @@ public class accountantRegister {
 							return "Error while connecting to the database for deleting.";
 						}
 						// create a prepared statement
-						String query = "delete from accountant where PID=?";
+						String query = "delete from accountant where AID=?";
 						PreparedStatement preparedStmt = con.prepareStatement(query);
 						// binding values
 						preparedStmt.setInt(1, Integer.parseInt(AID));

@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import com.sun.jersey.spi.dispatch.RequestDispatcher;
+
 public class PharmacistRegister {
 	// A common method to connect to the DB
 			private Connection connect() {
@@ -30,14 +32,14 @@ public class PharmacistRegister {
 					}
 					// create a prepared statement
 					String query = " insert into pharmacist(`PID`,`Pcode`,`PName`,`PNIC`,`PhoneNo`,`Email`,`Address`,`Password`)"
-							+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+							+ " values (?, ?, ?, ?, ?, ?, ?, ?)";
 					PreparedStatement preparedStmt = con.prepareStatement(query);
 					// binding values
 					preparedStmt.setInt(1, 0);
 					preparedStmt.setString(2, pcode);
 					preparedStmt.setString(3, name);
 					preparedStmt.setString(4, nic);
-					preparedStmt.setInt(5, Integer.parseInt(phone));
+					preparedStmt.setString(5, phone);
 					preparedStmt.setString(6, email);
 					preparedStmt.setString(7, address);
 					preparedStmt.setString(8, pass);
@@ -72,7 +74,7 @@ public class PharmacistRegister {
 						String Pcode = rs.getString("Pcode");
 						String PName = rs.getString("PName");
 						String PNIC = rs.getString("PNIC");
-						String PhoneNo = Double.toString(rs.getDouble("PhoneNo"));
+						String PhoneNo = rs.getString("PhoneNo");
 						String Email = rs.getString("Email");
 						String Address = rs.getString("Address");
 						String Password = rs.getString("Password");
@@ -85,7 +87,8 @@ public class PharmacistRegister {
 						output += "<td>" + Address + "</td>";
 						output += "<td>" + Password + "</td>";
 						// buttons
-						output += "<td><a href=\"pharmacistupdate.jsp\" class=\"btn btn-secondary\" role=\"button\">Update</a></td>" 
+						output += "<td><button type=\"button\" class=\"btn update_btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\" data-id=\"" + PID + "\" data-todo='{\"Pcode\":\""+ Pcode+ "\","
+								+ "\"PName\":\""+PName+ "\",\"PNIC\":\""+ PNIC+ "\",\"PhoneNo\":\""+ PhoneNo + "\",\"Email\":\""+ Email+ "\",\"Address\":\""+ Address+ "\",\"Password\":\""+ Password+ "\"}'>Update</button></td>"
 								+ "<td><form method=\"post\" action=\"pharmacistdet.jsp\">"
 								+ "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\"class=\"btn btn-danger\">"
 								+ "<input name=\"PID\" type=\"hidden\" value=\"" + PID + "\">" + "</form></td></tr>";
@@ -103,6 +106,7 @@ public class PharmacistRegister {
 
 			public String updateItem(String ID, String pcode, String name, String nic, String phone, String email, String address,String pass) {
 				String output = "";
+				System.out.println(ID);
 				try {
 					Connection con = connect();
 					if (con == null) {
@@ -124,14 +128,16 @@ public class PharmacistRegister {
 					preparedStmt.execute();
 					con.close();
 					output = "Updated successfully";
+		
 				} catch (Exception e) {
 					output = "Error while updating the item.";
 					System.err.println(e.getMessage());
 				}
 				return output;
 			}
-
+		
 			public String deleteItem(String PID) {
+				System.out.println("p delte");
 				String output = "";
 				try {
 					Connection con = connect();

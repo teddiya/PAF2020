@@ -75,8 +75,8 @@ public class accountantService {
 		Document doc = Jsoup.parse(itemData, "", Parser.xmlParser());
 
 		// Read the value from the element <itemID>
-		String NID = doc.select("NID").text();
-		String output = acobj.deleteItem(NID);
+		String AID = doc.select("AID").text();
+		String output = acobj.deleteItem(AID);
 		return output;
 	}
 
