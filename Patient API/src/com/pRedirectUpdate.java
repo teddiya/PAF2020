@@ -67,7 +67,7 @@ public class pRedirectUpdate extends HttpServlet {
 			try {
 				Connection con = connect();
 				if (con == null) {
-					response.sendRedirect("patient.jsp");
+					response.sendRedirect("patientdet.jsp");
 				}
 				// create a prepared statement
 				String query = "UPDATE patient SET Pcode=?,PName=?,PNIC=?,PhoneNo=?,Email=?,Address=?,Password=?WHERE PID=?";

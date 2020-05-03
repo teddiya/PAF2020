@@ -16,30 +16,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" href="css/animate.css">
-<link rel="stylesheet" href="css/style.css">
 
-<!-- Title Page-->
-<title>Patient registration</title>
-
-<!-- Icons font CSS-->
-<link href="vendor/mdi-font/css/material-design-iconic-font.min.css"
-	rel="stylesheet" media="all">
-<link href="vendor/font-awesome-4.7/css/font-awesome.min.css"
-	rel="stylesheet" media="all">
-<!-- Font special for pages-->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
-	rel="stylesheet">
-
-<!-- Vendor CSS-->
-<link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-<link href="vendor/datepicker/daterangepicker.css" rel="stylesheet"
-	media="all">
 
 <!-- Main CSS-->
-<link href="./css/adminreg.css" rel="stylesheet" media="all">
+
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target"
@@ -70,7 +50,7 @@
 								class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon-paper-plane"></span>
 							</div>
-							<span class="text">Mediplus@gmail.com</span>
+							<span class="text"></span>
 						</div>
 
 					</div>
@@ -92,7 +72,7 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav nav ml-auto">
-					<li class="nav-item"><a href="index.html class="nav-link"><span>Home</span></a></li>
+					<li class="nav-item"><a href="index.jsp class="nav-link"><span>Home</span></a></li>
 
 					<li class="nav-item"><a href="adminHome.html" class="nav-link"><span>Admin</span></a></li>
 

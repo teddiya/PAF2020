@@ -24,14 +24,15 @@ public class patientService {
 	PatientRegister phobj = new PatientRegister();
 
 	@GET
-	@Path("/")
+	@Path("/read")
 	@Produces(MediaType.TEXT_HTML)
 	public String readItems() {
+	
 		return phobj.readItems();
 	}
 
 	@POST
-	@Path("/")
+	@Path("/insert")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)                              //`PID`,`Pcode`,`PName`,`PNIC`,`PhoneNo`,`Email`,`Address`,`Password`
 	public String insertItem(
@@ -49,7 +50,7 @@ public class patientService {
 	}
 
 	@PUT
-	@Path("/")
+	@Path("/update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateItem(String itemData) {
@@ -69,7 +70,7 @@ public class patientService {
 	}
 
 	@DELETE
-	@Path("/")
+	@Path("/delete")
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteItem(String itemData) {

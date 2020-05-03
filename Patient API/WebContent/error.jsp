@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Can't access. Try again using correct id and password!!!
+<h2 style="color: darkred;">Can't access. Try again using correct id and password!!!</h2>
 </body>
 </html>
